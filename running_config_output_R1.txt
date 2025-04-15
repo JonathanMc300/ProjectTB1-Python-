@@ -1,0 +1,193 @@
+Building configuration...
+
+  
+  
+Current configuration : 5425 bytes
+!
+! Last configuration change at 16:37:58 UTC Tue Apr 15 2025 by admin
+!
+version 15.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip domain name cisco.com
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+crypto pki trustpoint TP-self-signed-4294967295
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-4294967295
+ revocation-check none
+ rsakeypair TP-self-signed-4294967295
+!
+!
+crypto pki certificate chain TP-self-signed-4294967295
+ certificate self-signed 01
+  3082022B 30820194 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 34323934 39363732 3935301E 170D3235 30333232 31333031 
+  34315A17 0D333030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D34 32393439 
+  36373239 3530819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100A0AE 75AFCFD5 79566801 A06D60B3 6BB556EB AB4CE397 D83CAB41 E688EF0C 
+  AFA18F7A 9B5BE6F6 2E930484 EC5D87D0 D5632FDD CD633F68 67A9F7BE 7FC23979 
+  A756BB22 866E5F77 12EFFBAF 02D2D728 EF546454 0EEC82A8 E0A31F4B AFE4ACF8 
+  5A9FB667 F846A634 B6D8E0C0 31144289 487670FD 32462EC5 7CC13426 B048C5D6 
+  2ADB0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603 
+  551D2304 18301680 14033B78 10F69039 40400FB6 7AA441E8 F1462213 CF301D06 
+  03551D0E 04160414 033B7810 F6903940 400FB67A A441E8F1 462213CF 300D0609 
+  2A864886 F70D0101 05050003 8181000B D46D78F4 B66160DE 872641B8 89AB93B2 
+  9DAED6CF 15FB753C 7675CEB9 6184525D C7D0E9AE B7DF5075 3580273A F1A7E80E 
+  661428D1 50C715F8 3A2EE376 5440F367 01D1B104 374E2534 EF63F476 29C4724D 
+  80224590 D4C245E4 0FCBF110 7B81C596 63711129 519CFA5F AF31B27B ACC3682D 
+  E2CD85C7 2D96A5C1 FACEB998 7F9FC3
+  	quit
+username admin privilege 15 secret 9 $9$vB.p67wMHyrnb9$RuK9fRFU0op1LM4BWH0gUOgewoFK3u5UO9psOIOa9NA
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback5
+ description This loopback was created with Paramiko
+ ip address 5.5.5.5 255.255.255.0
+!
+interface Loopback10
+ description This loopback was created with NetMiko
+ ip address 10.10.10.10 255.255.255.0
+!
+interface GigabitEthernet0/0
+ ip address 172.16.10.150 255.255.255.0
+ ip ospf 1 area 0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/1
+ ip address 172.16.20.1 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/2
+ ip address 172.16.30.1 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/3
+ ip address 172.16.40.1 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+router ospf 1
+ network 5.5.5.0 0.0.0.255 area 0
+ network 10.10.10.0 0.0.0.255 area 0
+ network 172.16.10.0 0.0.0.255 area 0
+ network 172.16.20.0 0.0.0.255 area 0
+ network 172.16.30.0 0.0.0.255 area 0
+ network 172.16.40.0 0.0.0.255 area 0
+ default-information originate always
+!
+ip default-gateway 172.16.10.2
+ip forward-protocol nd
+!
+!
+ip http server
+ip http authentication local
+ip http secure-server
+ip route 0.0.0.0 0.0.0.0 172.16.10.2
+ip ssh version 2
+!
+ipv6 ioam timestamp
+!
+!
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner login ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner motd ^C No Unauthorised Access - NetMiko  ^C
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login local
+ transport input ssh
+!
+no scheduler allocate
+!
+end
+
+
