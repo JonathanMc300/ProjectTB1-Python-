@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 3016 bytes
+Current configuration : 3066 bytes
 !
-! Last configuration change at 16:43:12 UTC Tue Apr 15 2025 by admin
+! Last configuration change at 12:14:58 UTC Thu Apr 17 2025 by admin
 !
 version 15.2
 service timestamps debug datetime msec
@@ -119,6 +119,7 @@ This IOSv software is provided AS-IS without warranty of any kind. Under no circ
 
 By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
 ^C
+banner motd ^C No Unauthorised Access - NetMiko  ^C
 !
 line con 0
 line aux 0
@@ -128,5 +129,3 @@ line vty 0 4
 !
 !
 end
-
-
